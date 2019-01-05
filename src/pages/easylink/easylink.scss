@@ -1,0 +1,117 @@
+$header-title-color: #fff;
+page-easylink {
+  .btn-eye.item-button {
+    z-index: 999;
+    font-size: 2rem;
+    color: black;
+  }
+  .fktes {
+    height: 36px;
+    input {
+      position: absolute;
+      height: 100%;
+      left: 0;
+      top: 0;
+      margin: 0!important;
+      width: 100%;
+      padding-top: 20px;
+      padding-left: 20px;
+    }
+  }
+  .pls-wifi {
+    line-height: 1.7;
+    color: red;
+  }
+  ion-header {
+    .toolbar-content.toolbar-content-md {
+      top: 12px;
+      left: 0;
+      position: absolute;
+      width: 100%;
+    }
+  }
+
+  ion-content.content {
+    // background-color: #efeff4;
+  }
+  ion-content.content {
+    background-image: url('../assets/imgs/bg-5326.png');
+    background-size: 100% 100%;
+    // background: $tes-gradient;
+    //background-image: url('../assets/imgs/bg-b.jpg');
+    //background-repeat: no-repeat;
+    //background-position: 50%;
+    //background-size: cover;
+  }
+  .toolbar-background {
+    background: transparent;
+    border-color: transparent;
+  }
+  .content-ios,
+  .content-md {
+    color: black;
+  }
+  .toolbar-content {
+    padding-bottom: 15px;
+    .title>.toolbar-title {
+      font-size: 22px;
+      color: $header-title-color;
+      font-weight: bold;
+      font-family: 微軟正黑體;
+      text-shadow: -1px 0 rgba(0, 0, 0, .2), 0 1px rgba(0, 0, 0, .2), 1px 0 rgba(0, 0, 0, .2), 0 -1px rgba(0, 0, 0, .2);
+    }
+
+  }
+
+  .title {
+    font-weight: bold;
+    text-align: center;
+  }
+  .form-title {
+    font-weight: bold;
+    text-align: center;
+    color: #404040;
+    text-shadow: -1px 0 rgba(255, 255, 255, .4), 0 1px rgba(255, 255, 255, .4), 1px 0 rgba(255, 255, 255, .4), 0 -1px rgba(255, 255, 255, .4);
+    margin: 15px;
+    border-radius: 13px;
+    padding: 2px;
+    background-color: rgba(255, 255, 255, .85)
+  }
+  .form-list {
+    ion-item.item:first-child {
+      border-top-right-radius: 3px;
+      border-top-left-radius: 3px;
+    }
+    ion-item.item:last-child {
+      border-bottom-right-radius: 3px;
+      border-bottom-left-radius: 3px;
+    }
+  }
+  .content-md hr,
+  .content-ios hr {
+    background-color: rgba(255, 255, 255, 0.65);
+  }
+  #devices {
+    margin-top: 19px;
+    .loading {
+      display: block;
+      margin: 0 auto;
+    }
+  }
+  .passicon{
+    z-index: 999;
+    /* font-size:2rem !important;
+    position: relative !important;
+    top: 22px !important;
+    margin: 0 auto !important; */
+  }
+  .item {
+    .label {
+      font-size: 1.9rem;
+    }
+    .input {
+      font-size: 1.5rem;
+    }
+  }
+}
+

@@ -1,0 +1,8 @@
+{
+  "name": "tes-sense",
+  "app_id": "676f93b2",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}

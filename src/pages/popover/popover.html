@@ -1,0 +1,13 @@
+    <ion-list>
+      <!-- <ion-list-header>目前裝置:{{ type }}</ion-list-header> -->
+      <button *ngIf="hasMac" ion-item (click)="refresh()">{{'重新整理' | translate}}</button>
+      <button ion-item (click)="pushPage('EasylinkPage')">SSID & Password</button>
+      <button ion-item (click)="pushPage('MacPage')">MAC Address</button>
+      <button ion-item (click)="selectAlmSound()" [disabled]="settings.isAlarming">{{'設定警報聲' | translate}}</button>
+      <!-- <button ion-item (click)="expandMachineOptions()"><ion-icon [name]="isExapndOption ? 'arrow-dropup' : 'arrow-dropdown'"></ion-icon> {{'切換機型' | translate}}</button>
+      <ng-container  *ngIf="isExapndOption">
+        <button *ngFor="let item of typelist" ion-item (click)="changeMachine(item.key)" class="indent">{{item.slug}}</button>
+      </ng-container > -->
+      <span ion-item (click)="close()">{{'版本' | translate}} 1.0.9</span>
+    </ion-list>
+    <!-- <img style="display: none;" src="assets/imgs/tes-airlist.png" alt="" #myImage/> -->

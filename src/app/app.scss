@@ -1,0 +1,78 @@
+@import "../../node_modules/ionic2-auto-complete/auto-complete";
+.button-md {
+	text-transform: none;
+}
+.scroll-content {
+	overflow: hidden;
+}
+.col {
+	.button {
+		border-radius: 10px;
+		margin: 0 auto;
+		span {
+			font-size: 1.7rem;
+		}
+	}
+}
+
+.searchbar-md .searchbar-input {
+	padding: 6px 7px;
+	padding-left: 0px;
+}
+.searchbar-search-icon {
+	display: none;
+}
+ion-auto-complete {
+	width: 100%;
+}
+ion-auto-complete ion-searchbar{
+	padding: 0px !important;
+}
+.searchbar-md .searchbar-input {
+	border-radius: 0;
+
+}
+.searchbar-ios .searchbar-input {
+
+}
+.searchbar-ios.searchbar-left-aligned .searchbar-input{
+
+}
+/**/
+.prompt-mac {
+	.alert-wrapper {
+		max-width: 90%;
+		margin-top: 35%;
+	}
+}
+
+.bar-button-default-ios, .bar-button-default.bar-button-ios-default, .bar-button-clear-ios-default,
+.bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default {
+	color: white;
+}
+.header > .toolbar .i18n-icon span {
+font-size: 8px;
+}
+.alert-wrapper {
+
+	.alert-title, .alert-sub-title, .button-inner {
+		font-family: "sans-serif"!important;
+	}
+}
+
+.custom-alert button.alert-button-group {
+  width: 33.33%;
+}
+
+.custom-alert .alert-button-group .button-inner {
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.custom-alert .alert-button-group-vertical {
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row ;
+}

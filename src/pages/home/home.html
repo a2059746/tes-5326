@@ -1,0 +1,128 @@
+<ion-slides
+(ionSlideDidChange)="slideChanged()"
+(ionSlideAutoplay)="log('ionSlideAutoplay')"
+(ionSlideAutoplayStart)="log('ionSlideAutoplayStart')"
+(ionSlideAutoplayStop)="log('ionSlideAutoplayStop')"
+(ionSlideDoubleTap)="log('ionSlideDoubleTap')"
+(ionSlideDrag)="log('ionSlideDrag')"
+(ionSlideNextEnd)="log('ionSlideNextEnd')"
+(ionSlideNextStart)="log('ionSlideNextStart')"
+(ionSlidePrevEnd)="log('ionSlidePrevEnd')"
+(ionSlidePrevStart)="log('ionSlidePrevStart')"
+(ionSlideReachEnd)="log('ionSlideReachEnd')"
+(ionSlideReachStart)="log('ionSlideReachStart')"
+(ionSlideTap)="log('ionSlideTap')"
+(ionSlideWillChange)="log('ionSlideWillChange')"
+(click)="log('click')"
+>
+  <ion-slide *ngFor="let mac of macList">
+
+    <ion-header>
+      <ion-navbar>
+        <!--<button ion-button menuToggle>
+          <ion-icon color="light" name="menu"></ion-icon>
+        </button> -->
+        <ion-buttons left>
+          <button ion-button icon-only (click)="presentPopover($event)">
+            <ion-icon name="more"></ion-icon>
+          </button>
+        </ion-buttons>
+
+        <ion-title word-wrap>
+          <!-- <p [ngStyle]="{'font-size': (translate.currentLang==='en')?'5vw':'5.2vw'}" class="airtext">{{airtext | translate}}</p> -->
+          <p [ngStyle]="{'font-size': (translate.currentLang==='en')?'6vw':'6.2vw', 'color': 'white'}" class="airtext">{{ mac['macName'] }}</p>
+        </ion-title>
+
+        <ion-buttons end>
+          <button class="i18n-icon" ion-button icon-only (click)="i18nPopover($event)">
+            <ion-icon name="md-globe">{{ currentlang }}</ion-icon>
+          </button>
+        </ion-buttons>
+      </ion-navbar>
+    </ion-header>
+
+
+    <ion-content>
+      <ion-grid id="datas-cont" *ngIf="hasMac">
+        <ion-row id="gadget-block">
+          <div class="m-box">
+            <p class="m-content">
+              <img
+                [src]="'./assets/imgs/alarm/' + (sensor.alm_toggle ? 'a-on' : 'a-off') + '.png'"
+                alt=""
+                class="alarmStyle">
+            </p>
+          </div>
+          <div id="alarm-toggle" (click)="closeAlarm(sensor.alm_toggle, $event)">
+          </div>
+          <div class="m-box">
+            <p class="m-content">
+                <span class="alarm-text"
+                  [ngStyle]="{
+                    'visibility': (sensor.mode == 1) ? 'visible' : 'hidden',
+                    'color': sensor.alm_mode ? 'red' : '#ffffff',
+                    'border-color': sensor.alm_mode ? 'red' : '#ffffff'
+                  }"
+                  [ngClass]="{'alarming' : sensor.alm_mode}">ALM</span>
+            </p>
+          </div>
+          <div class="m-box" style="margin-left: auto;">
+            <p class="m-content">
+              <img [ngClass]="{'low-battery' : (sensor.battery == 0)}" [src]="'./assets/imgs/battery/' + sensor.battery + '.png'" alt="" class="battetyStyle" height="100%">
+            </p>
+          </div>
+        </ion-row>
+        <ion-row id="clock-block">
+          <ion-col>
+            <p id="clock"><span class="clockitem">{{clock | date: 'HH'}}</span><span class="clockdot">：</span><span class="clockitem">{{clock | date: 'mm'}}</span></p>
+          </ion-col>
+        </ion-row>
+
+        <ion-row id="pm25-cont">
+          <ion-row>
+            <ion-col class="m-box">
+              <p class="m-content">
+                <span>{{ sensor.weightingLabel }}</span>
+                <span>SPL</span>
+              </p>
+            </ion-col>
+            <ion-col col-6 class="text-box">
+              <p
+                [ngClass]="{'vspl-size': true, 'text-center': true, 'value-text': true, 'alarming' : (sensor.mode == 1 && sensor.alm_mode)}"
+                [ngStyle]="{'color': (sensor.mode == 1 && sensor.alm_mode) ? 'red' : '#22c786'}">
+                {{ sensor.spl }}
+              </p>
+            </ion-col>
+            <ion-col class="text-box"><p class="value-unit vu-size text-center">dB</p></ion-col>
+          </ion-row>
+          <ion-row [ngStyle]="{'visibility': (sensor.mode == 2) ? 'visible' : 'hidden'}">
+            <ion-col class="m-box">
+              <p class="m-content">
+                <span>MAX</span>
+              </p>
+            </ion-col>
+            <ion-col col-6 class="text-box">
+              <p class="vt-size text-center value-text value-maxmin-color">
+                {{ sensor.max }}
+              </p>
+            </ion-col>
+            <ion-col class="text-box"><p class="value-unit vu-size text-center">dB</p></ion-col>
+          </ion-row>
+          <ion-row [ngStyle]="{'visibility': (sensor.mode == 2) ? 'visible' : 'hidden'}">
+            <ion-col class="m-box">
+              <p class="m-content">
+                <span>MIN</span>
+              </p>
+            </ion-col>
+            <ion-col col-6 class="text-box">
+              <p class="vt-size text-center value-text value-maxmin-color">
+                {{ sensor.min }}
+              </p>
+            </ion-col>
+            <ion-col class="text-box"><p class="value-unit vu-size text-center">dB</p></ion-col>
+          </ion-row>
+        </ion-row>
+      </ion-grid>
+    </ion-content>
+  </ion-slide>
+</ion-slides>

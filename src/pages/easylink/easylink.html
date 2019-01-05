@@ -1,0 +1,111 @@
+<!--
+  Generated template for the EasylinkPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button icon-only (click)="presentPopover($event)">
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>SSID & Password</ion-title>
+        <ion-buttons end>
+      <button class="i18n-icon" ion-button icon-only (click)="i18nPopover($event)">
+        <ion-icon name="md-globe">{{ currentlang }}</ion-icon>
+      </button>
+    </ion-buttons>
+    <!--<ion-buttons end>
+      <button (click)="openModal()" ion-button icon-only color="light">
+        <ion-icon name="information-circle"></ion-icon>
+      </button>
+    </ion-buttons> -->
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding >
+
+
+
+    <h3 class="form-title" translate>— Wireless 分享器 —</h3>
+    <ion-list class="form-list">
+      <ion-item>
+        <ion-label color="primary" stacked>SSID</ion-label>
+        <ion-input
+        (keypress)="ssidHandler($event.keyCode)"
+        class="fktes" #ssidinput [disabled]="isEasyLinking || onlyread" [(ngModel)]="wifiset.ssid" type="text" placeholder=" {{'輸入分享器SSID' | translate}}"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label color="primary" stacked>Password</ion-label>
+        <ion-input
+        (keypress)="passwdHandler($event.keyCode)"
+        #pwinput class="fktes" [disabled]="isEasyLinking || onlyread" [(ngModel)]="wifiset.pw" [type]="passwordType" placeholder=" {{'輸入分享器Password' | translate}}" clearOnEdit="false"></ion-input>
+        <button (click)="hideShowPassword()" class="btn-eye" ion-button clear icon only item-end>
+          <ion-icon [name]="passwordIcon" class="passicon"></ion-icon>
+        </button>
+
+      </ion-item>
+      <!-- <ion-item *ngIf="isNoWifi">
+        <h2 class="pls-wifi" translate>PLS_ENABLE_WIFI</h2>
+        <button (click)="checkWiFi()" ion-button color="success" item-end>{{'RETRY' | translate}}</button>
+      </ion-item> -->
+    </ion-list>
+
+    <hr>
+    <!-- <button ion-button block (click)="wifi()">wif</button>
+    <button ion-button block (click)="permission()">get permission</button>
+    <button ion-button block (click)="get()">getSSID</button> -->
+<ion-list *ngIf="isEasyLinking" id="devices" class="form-list">
+
+    <h3 class="form-title" translate>— 發現的裝置 —</h3>
+  <ion-item text-wrap> <!-- *ngIf="!mdns.length" -->
+      <p translate>請將裝置設定成「StAt (Station)」模式，並等待成功訊息出現！</p>
+      <!-- <p translate>Please set device into 'StAt (Station)' mode and waiting success message...</p> -->
+  </ion-item> <!-- <pre>{{item| json}}</pre> -->
+  <ion-item *ngFor="let item of mdns;">
+    <h2>{{item.service?.name}}</h2>
+  </ion-item>
+  <ion-item>
+    <p style="text-align: center;" translate>設定中...</p>
+    <ion-spinner class="loading" name="circles"></ion-spinner>
+  </ion-item>
+
+</ion-list>
+<!--
+<pre>
+==== Wifi State ====
+{{ww | json}}
+</pre>
+<hr>
+<pre>
+ ==== Easylink ====
+{{eslink | json}}
+</pre>
+<hr>
+<pre>
+==== mDNS ====
+{{mdns | json}}
+</pre>
+-->
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-row>
+      <ion-col>
+          <button (click)="cancel()" ion-button block color="dark" translate>{{ '取消' | translate}}</button>
+      </ion-col>
+      <ion-col>
+        <button [disabled]="onlyread" style="background-color: #dedede;" *ngIf="!isEasyLinking" ion-button block (click)="startES()" color="light">{{ '設定' | translate}}</button>
+        <button *ngIf="isEasyLinking" ion-button block (click)="stopES()" color="danger">{{ '停止' | translate}}</button>
+
+      </ion-col>
+    </ion-row>
+
+
+  </ion-toolbar>
+</ion-footer>

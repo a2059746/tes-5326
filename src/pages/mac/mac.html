@@ -1,0 +1,72 @@
+<!--
+  Generated template for the MacPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button icon-only (click)="presentPopover($event, 'MacAddress')">
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-title translate>{{'Mac Address設定' | translate}}</ion-title>
+    <ion-buttons end>
+      <button class="i18n-icon" ion-button icon-only (click)="i18nPopover($event)">
+        <ion-icon name="md-globe">{{ currentlang }}</ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+    <!-- <button ion-button round block color="light" (click)="play()">MAGIC 小海螺</button>
+    <button ion-button round block color="light" (click)="stop()">MAGIC 小海螺</button> -->
+    <!-- <button ion-button round block (tap)="tap()" (press)="press($event)" (pressup)="pressup($event)" (click)="click()">按壓測試</button> -->
+  <div id="mac-form" *ngIf="form" [formGroup]="form">
+      <h3 class="form-title" translate>— {{ '裝置' | translate }} —</h3>
+      <ion-list class="form-list">
+          <ion-item id="mac-item" class="fktes" [ngClass]="{'ontouch': showTransparentPage}">
+            <ion-label color="primary" stacked>Mac Address</ion-label>
+            <ion-auto-complete #macinput item-content
+              [(ngModel)]="macValue"
+              [ngModelOptions]="{standalone: true}"
+              (keypress)="eventHandler($event.keyCode)"
+              (autoBlur)="autoBlur($event)" (autoFocus)="autoFocus($event)"
+              (ionAutoInput)="input($event)" (itemSelected)="itemSelected($event)"
+              [hideListOnSelection]="true"
+              [showResultsFirst]="true"
+              [dataProvider]="autoMacProvider" [options]="{ type: 'text', placeholder : '' }"
+            ></ion-auto-complete>
+          </ion-item>
+          <!-- <ion-item id="macinput">
+              <ion-label color="primary" stacked>Mac Address</ion-label>
+
+              <ion-input formControlName="macaddress" type="text" placeholder="Ex. 'AABBCC112233'"></ion-input>
+          </ion-item> -->
+
+          <ion-item text-wrap>
+              <p class="invaild-desc" translate>ENTER_CORRECT_MAC</p>
+              <!-- <p *ngIf="!isValid" class="invaild-desc dirty" translate>Mac Address不正確！(A~F英文字或0~9數字，無其他符號，共12字)</p> -->
+          </ion-item>
+          <ion-row style="margin-top: 1vh;">
+
+              <!-- <div *ngIf="showTransparentPage" id="transparentPage"></div> -->
+            <ion-col>
+              <!-- <button [disabled]="showTransparentPage" (click)="cancel()" color="light" ion-button block>{{'取消' | translate}}</button> -->
+              <button (click)="cancel()" color="light" ion-button block>{{'取消' | translate}}</button>
+            </ion-col>
+            <ion-col>
+              <button class="submit" [disabled]="!isValid" (click)="submit()" ion-button block>{{'確認' | translate}}</button>
+            </ion-col>
+          </ion-row>
+
+
+      </ion-list>
+  </div>
+
+</ion-content>

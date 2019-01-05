@@ -1,0 +1,7 @@
+{
+  "name": "tes-pm25",
+  "ios_identifier": "",
+  "android_identifier": "gowint.tes.pm25",
+  "update": "resume",
+  "content_url": "http://tes-app.com:8080"
+}

@@ -1,0 +1,27 @@
+page-tes-type {
+
+  .title {
+    height: 35%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 7.5vw;
+    font-weight: bolder;
+  }
+
+  .option-content {
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    div {
+      width: 100%;
+      button {
+        font-size: 7vw;
+        height: 10vh;
+        margin: 5vh 0;
+      }
+    }
+  }
+
+}

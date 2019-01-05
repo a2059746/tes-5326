@@ -1,0 +1,94 @@
+<ion-header>
+  <ion-navbar>
+    <!--<button ion-button menuToggle>
+      <ion-icon color="light" name="menu"></ion-icon>
+    </button> -->
+    <ion-buttons left>
+      <button ion-button icon-only (click)="presentPopover($event)">
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-title word-wrap>
+
+      <!-- <p *ngIf="sensor.pm > -1000" [ngStyle]="{'font-size': (translate.currentLang==='en')?'4.5vw':'4.5vw'}">{{ '空氣品質指標' | translate}}</p> -->
+      <!-- <p [ngStyle]="{'font-size': (translate.currentLang==='en')?'5vw':'5.2vw'}" class="airtext">{{airtext | translate}}</p> -->
+      <p [ngStyle]="{'font-size': (translate.currentLang==='en')?'5vw':'5.2vw'}" class="airtext"></p>
+
+    </ion-title>
+
+
+    <ion-buttons end>
+      <button class="i18n-icon" ion-button icon-only (click)="i18nPopover($event)">
+        <ion-icon name="md-globe">{{ currentlang }}</ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid id="datas-cont" *ngIf="hasMac">
+    <ion-row id="gadget-block">
+      <img [src]="'./assets/imgs/alarm/' + (sensor.alm_toggle ? 'a-on' : 'a-off') + '.png'" alt="" width="27vw">
+      <div class="m-box">
+        <p class="m-content">
+          <img
+            [src]="'./assets/imgs/sound-toggle/' + (sensor.alm_toggle ? 's-on' : 's-off') + '.png'"
+            alt=""
+            width="65vw"
+            height="23vw"
+            style="margin-left: 15px;"
+            (click)="closeAlarm(sensor.alm_toggle)">
+        </p>
+      </div>
+      <img [src]="'./assets/imgs/battery/' + sensor.battery + '.png'" alt="" width="70vw" style="margin-left: auto;">
+    </ion-row>
+    <ion-row id="clock-block">
+      <ion-col>
+        <p id="clock"><span class="clockitem">{{clock | date: 'HH'}}</span><span class="clockdot">：</span><span class="clockitem">{{clock | date: 'mm'}}</span></p>
+      </ion-col>
+    </ion-row>
+    <ion-row id="pm25-cont">
+      <ion-row>
+        <ion-col class="m-box">
+          <p class="m-content">
+            <span>MAX</span>
+            <!-- <span *ngIf="sensor.alm_temp == 1 || sensor.alm_temp == 3">MXt</span>
+            <span *ngIf="sensor.alm_temp == 2 || sensor.alm_temp == 3">MNt</span> -->
+          </p>
+        </ion-col>
+        <ion-col col-7><p class="value-text">{{ sensor.max }}</p></ion-col>
+        <ion-col col-2><p class="value-unit">dB</p></ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="m-box">
+          <p class="m-content">
+            <span>Z</span>
+            <span>SPL</span>
+            <!-- <span *ngIf="sensor.alm_rh == 1 || sensor.alm_rh == 3">MXh</span>
+            <span *ngIf="sensor.alm_rh == 2 || sensor.alm_rh == 3">MNh</span> -->
+          </p>
+        </ion-col>
+        <ion-col col-7><p class="value-text-spl">{{ sensor.spl }}</p></ion-col>
+        <ion-col col-2><p class="value-unit">dB</p></ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="m-box">
+          <p class="m-content">
+            <span>MXN</span>
+            <!-- <span *ngIf="sensor.alm_psre == 1 || sensor.alm_psre == 3">MXp</span>
+            <span *ngIf="sensor.alm_psre == 2 || sensor.alm_psre == 3">MNp</span> -->
+          </p>
+        </ion-col>
+        <ion-col col-7><p class="value-text">{{ sensor.min }}</p></ion-col>
+        <ion-col col-2><p class="value-unit">dB</p></ion-col>
+      </ion-row>
+    </ion-row>
+    <ion-row id="bottom-block">
+      <ion-col col-4>
+        <p class="alarm-text" [ngStyle]="{'visibility': sensor.alm_mode ? 'visible' : 'hidden'}">ALM</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
